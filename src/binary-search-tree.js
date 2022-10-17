@@ -46,9 +46,13 @@ class BinarySearchTree {
     console.log(`current node: ${node.data}`);
   }
 
-  has(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  has(data) {
+    let searchingItem = new Node(data);
+    if (this.ancient === null) {
+      return false;
+    } else {
+      return this.findSpecifiedItem(this.ancient, searchingItem)!==null;
+    }
   }
 
   find(data) {
