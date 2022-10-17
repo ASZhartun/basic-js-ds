@@ -24,12 +24,20 @@ const { NotImplementedError } = require('../extensions/index.js');
  */
  function removeKFromList(l, k) {
   if (l === null) return null;
-  while (l!==null) { // удаляем текущий при совпадении
-    if (l.value === k.value) l = l.next;
-    else break;
+  while (l!=null && l.value === k.value) {
+    l = l.next; //  [3, 1, 2, 3, 4, 5, 3] [1, 2, 3, 4, 5, 3]
   }
-  if (l!==null && l.next) l.next = removeKFromList(l.next, k); // преобразовываем следующий узел
-  return l;
+
+  let currentNode = l;
+  if (currentNode !== null) {
+    while (currentNode.next !== null) {
+      if (currentNode.next.value === k.value) {
+        currentNode.next = currentNode.next.next;
+      } else {
+        currentNode = currentNode.next;
+      }
+    }
+  }
 }
 
 module.exports = {
